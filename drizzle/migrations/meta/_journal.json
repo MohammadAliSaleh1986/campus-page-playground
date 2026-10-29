@@ -1,5 +1,27 @@
 {
   "version": "7",
   "dialect": "postgresql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1792314841870,
+      "tag": "0000_student_profiles_and_courses",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792642668961,
+      "tag": "0001_seed_sample_courses",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1792788963971,
+      "tag": "0002_user_roles_admin",
+      "breakpoints": true
+    }
+  ]
 }
