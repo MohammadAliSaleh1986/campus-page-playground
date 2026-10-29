@@ -9,6 +9,7 @@ export const site = {
     email: "Mohammad_ali_saleh@hotmail.com",
     phone: "+961 70 804 147",
     location: "Chouaifet, El Aamroussieh 1500",
+    whatsapp: "https://wa.me/96170804147",
   },
   social: [
     { label: "YouTube", href: "#" },
