@@ -6,9 +6,9 @@ export const site = {
   locale: "en",
   dir: "ltr" as "ltr" | "rtl",
   contact: {
-    email: "[contact@example.com]",
-    phone: "[+000 000 000]",
-    location: "[City, Country]",
+    email: "Mohammad_ali_saleh@hotmail.com",
+    phone: "+961 70 804 147",
+    location: "Chouaifet, El Aamroussieh 1500",
   },
   social: [
     { label: "YouTube", href: "#" },
@@ -16,7 +16,7 @@ export const site = {
     { label: "LinkedIn", href: "#" },
   ],
   instructor: {
-    name: "[Instructor Name]",
+    name: "Mohammad Ali Saleh",
     title: "Business Administration Specialist & Educator",
     bio: "Two decades in business administration and seven years teaching school students — bringing real-world finance and technology into clear, practical lessons.",
     qualifications: [
