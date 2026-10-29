@@ -7,7 +7,8 @@ export const getProfile = createServerFn({ method: "GET" })
   .handler(async ({ context }) => {
     const { data, error } = await context.supabase.from("profiles").select("display_name, preferred_subject").eq("id", context.userId).single();
     if (error) throw new Error("Your profile could not be loaded.");
-    return data;
+    const { data: roles } = await context.supabase.from("user_roles").select("role").eq("user_id", context.userId).eq("role", "admin");
+    return { ...data, is_admin: (roles?.length ?? 0) > 0 };
   });
 
 export const saveProfile = createServerFn({ method: "POST" })
