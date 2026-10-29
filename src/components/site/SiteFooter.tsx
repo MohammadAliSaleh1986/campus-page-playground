@@ -15,7 +15,9 @@ export function SiteFooter() {
         <div>
           <p className="text-sm font-semibold">Contact</p>
           <ul className="mt-3 space-y-2 text-sm text-primary-foreground/70">
-            <li>{site.contact.email}</li><li>{site.contact.phone}</li><li>{site.contact.location}</li>
+            <li><a href={`mailto:${site.contact.email}`} className="hover:text-primary-foreground">{site.contact.email}</a></li>
+            <li><a href={site.contact.whatsapp} target="_blank" rel="noopener noreferrer" className="hover:text-primary-foreground">{site.contact.phone} (WhatsApp)</a></li>
+            <li>{site.contact.location}</li>
           </ul>
         </div>
         <div>
