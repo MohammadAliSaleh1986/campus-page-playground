@@ -15,6 +15,10 @@ export const site = {
     { label: "YouTube", href: "#" },
     { label: "Instagram", href: "#" },
     { label: "LinkedIn", href: "#" },
+    { label: "Facebook", href: "#" },
+    { label: "TikTok", href: "#" },
+    { label: "Portfolio", href: "https://mohammadalisaleh.my.canva.site/" },
+    { label: "GitHub", href: "#" },
   ],
   instructor: {
     name: "Mohammad Ali Saleh",
