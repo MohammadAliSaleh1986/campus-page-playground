@@ -44,7 +44,7 @@ function Home() {
               Real skills in coding, robotics and finance — learned at your own pace.
             </h1>
             <p className="mt-5 max-w-lg text-lg text-muted-foreground">
-              Clear recorded lessons for students aged 6–16, built by an educator with 20 years of business experience.
+              Clear recorded lessons for students aged 6–16, built by a tutor with 7 years of teaching experience and 20 years in business administration.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg"><Link to="/courses">Explore courses</Link></Button>
