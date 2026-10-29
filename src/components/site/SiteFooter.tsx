@@ -24,7 +24,7 @@ export function SiteFooter() {
           <p className="text-sm font-semibold">Contact</p>
           <ul className="mt-3 space-y-2 text-sm text-primary-foreground/70">
             <li><a href={`mailto:${site.contact.email}`} className="hover:text-primary-foreground">{site.contact.email}</a></li>
-            <li><a href={site.contact.whatsapp} target="_blank" rel="noopener noreferrer" className="hover:text-primary-foreground">{site.contact.phone} (WhatsApp)</a></li>
+            <li><a href={site.contact.whatsapp} target="_blank" rel="noopener noreferrer" aria-label={`WhatsApp ${site.contact.phone}`} className="inline-flex items-center gap-2 hover:text-primary-foreground"><WhatsAppIcon className="size-4 shrink-0" />{site.contact.phone}</a></li>
             <li>{site.contact.location}</li>
           </ul>
         </div>
