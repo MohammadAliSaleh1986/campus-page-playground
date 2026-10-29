@@ -14,7 +14,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: `${site.brandName} — Learn coding, robotics & finance at your own pace` },
-      { name: "description", content: "Recorded courses for students aged 10–18 in coding, robotics, finance, maths and science, taught by an experienced educator." },
+      { name: "description", content: "Recorded courses for students aged 6–16 in coding, robotics, finance, maths and science, taught by an experienced educator." },
       { property: "og:title", content: `${site.brandName} — Self-paced online courses` },
       { property: "og:description", content: "Recorded courses in coding, robotics, finance, maths and science for curious students." },
     ],
@@ -44,7 +44,7 @@ function Home() {
               Real skills in coding, robotics and finance — learned at your own pace.
             </h1>
             <p className="mt-5 max-w-lg text-lg text-muted-foreground">
-              Clear recorded lessons for students aged 10–18, built by an educator with 20 years of business experience.
+              Clear recorded lessons for students aged 6–16, built by an educator with 20 years of business experience.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg"><Link to="/courses">Explore courses</Link></Button>
