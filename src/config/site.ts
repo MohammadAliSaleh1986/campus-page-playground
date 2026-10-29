@@ -6,7 +6,7 @@ export const site = {
   locale: "en",
   dir: "ltr" as "ltr" | "rtl",
   contact: {
-    email: "Mohammad_ali_saleh@hotmail.com",
+    email: "mohammadalisalehg@gmail.com",
     phone: "+961 70 804 147",
     location: "Chouaifet, El Aamroussieh 1500",
     whatsapp: "https://wa.me/96170804147",
