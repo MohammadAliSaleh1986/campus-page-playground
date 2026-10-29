@@ -27,7 +27,7 @@ export const site = {
     qualifications: [
       "Master's degree in Accounting and Auditing",
       "License (Bachelor's) in Finance",
-      "License (Bachelor's) in Informatics",
+      "License (Bachelor's) in Business Informatics",
     ],
     experience: [
       { years: 20, label: "years as a Business Administration Specialist" },

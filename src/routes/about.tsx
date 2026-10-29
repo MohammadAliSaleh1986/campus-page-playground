@@ -14,7 +14,7 @@ export const Route = createFileRoute("/about")({
       <PageHeader title={'About the instructor'} />
       <div className="container-page max-w-3xl py-12">
         
-        <p className="text-muted-foreground">{`${site.instructor.name} combines 20 years as a Business Administration Specialist with 7 years teaching Coding, Robotics, Finance, Mathematics and Science to school students, holding a Master's in Accounting and Auditing, a License in Finance, and a License in Informatics.`}</p>
+        <p className="text-muted-foreground">{`${site.instructor.name} combines 20 years as a Business Administration Specialist with 7 years teaching Coding, Robotics, Finance, Mathematics and Science to school students, holding a Master's in Accounting and Auditing, a License in Finance, and a License in Business Informatics.`}</p>
       </div>
     </>
   ),
