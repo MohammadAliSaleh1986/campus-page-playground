@@ -36,6 +36,13 @@
       "when": 1793308001366,
       "tag": "0004_admin_courses_videos_enrollments",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1793308037146,
+      "tag": "0005_admins_read_profiles",
+      "breakpoints": true
     }
   ]
 }
