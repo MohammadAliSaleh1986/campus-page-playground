@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      course_videos: {
+        Row: {
+          course_slug: string
+          created_at: string
+          drive_file_id: string
+          id: string
+          is_preview: boolean
+          position: number
+          title: string
+        }
+        Insert: {
+          course_slug: string
+          created_at?: string
+          drive_file_id: string
+          id?: string
+          is_preview?: boolean
+          position?: number
+          title: string
+        }
+        Update: {
+          course_slug?: string
+          created_at?: string
+          drive_file_id?: string
+          id?: string
+          is_preview?: boolean
+          position?: number
+          title?: string
+        }
+        Relationships: []
+      }
       courses: {
         Row: {
           content: Json
@@ -29,6 +59,48 @@ export type Database = {
           content?: Json
           published?: boolean
           slug?: string
+        }
+        Relationships: []
+      }
+      enrollments: {
+        Row: {
+          admin_note: string
+          amount: number
+          course_slug: string
+          created_at: string
+          id: string
+          note: string
+          receipt_path: string | null
+          reviewed_at: string | null
+          status: Database["public"]["Enums"]["enrollment_status"]
+          user_id: string
+          whish_reference: string
+        }
+        Insert: {
+          admin_note?: string
+          amount?: number
+          course_slug: string
+          created_at?: string
+          id?: string
+          note?: string
+          receipt_path?: string | null
+          reviewed_at?: string | null
+          status?: Database["public"]["Enums"]["enrollment_status"]
+          user_id?: string
+          whish_reference?: string
+        }
+        Update: {
+          admin_note?: string
+          amount?: number
+          course_slug?: string
+          created_at?: string
+          id?: string
+          note?: string
+          receipt_path?: string | null
+          reviewed_at?: string | null
+          status?: Database["public"]["Enums"]["enrollment_status"]
+          user_id?: string
+          whish_reference?: string
         }
         Relationships: []
       }
@@ -89,6 +161,7 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "student"
+      enrollment_status: "pending" | "approved" | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -217,6 +290,7 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "student"],
+      enrollment_status: ["pending", "approved", "rejected"],
     },
   },
 } as const
