@@ -35,7 +35,7 @@ export const Route = createFileRoute("/contact")({
             rel="noopener noreferrer"
             className="flex items-start gap-4 rounded-xl border bg-card p-6 shadow-card transition hover:border-accent"
           >
-            <MessageCircle className="mt-1 size-6 shrink-0 text-accent" aria-hidden />
+            <WhatsAppIcon className="mt-1 size-6 shrink-0 text-accent" />
             <span>
               <span className="block font-semibold">Message on WhatsApp</span>
               <span className="mt-1 block text-sm text-muted-foreground">{site.contact.phone}</span>
