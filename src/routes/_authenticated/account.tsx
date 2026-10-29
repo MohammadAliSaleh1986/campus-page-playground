@@ -36,11 +36,11 @@ function AccountPage() {
     finally { setBusy(false); }
   }
   return <section className="container-page max-w-xl py-14">
-    <p className="eyebrow">Student account</p><h1 className="mt-2 text-3xl font-bold text-primary">Your profile</h1>
+    <p className="eyebrow">{data.is_admin ? "Admin account" : "Student account"}</p><h1 className="mt-2 text-3xl font-bold text-primary">Your profile</h1>
     <p className="mt-3 break-words text-sm text-muted-foreground">{user?.email}</p>
     <form className="mt-8 space-y-5" onSubmit={submit}>
       <div className="space-y-2"><Label htmlFor="display-name">Name</Label><Input id="display-name" required maxLength={100} autoComplete="name" value={name} onChange={e => setName(e.target.value)} /></div>
-      <div className="space-y-2"><Label htmlFor="preferred-subject">Preferred subject</Label><select id="preferred-subject" className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm" value={subject} onChange={e => setSubject(e.target.value)}><option value="">No preference</option>{subjects.map(s => <option key={s.id} value={s.id}>{s.label}</option>)}</select></div>
+      {!data.is_admin && <div className="space-y-2"><Label htmlFor="preferred-subject">Preferred subject</Label><select id="preferred-subject" className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm" value={subject} onChange={e => setSubject(e.target.value)}><option value="">No preference</option>{subjects.map(s => <option key={s.id} value={s.id}>{s.label}</option>)}</select></div>}
       {message && <p role="status" className="text-sm text-accent">{message}</p>}{error && <p role="alert" className="text-sm text-destructive">{error}</p>}
       <Button type="submit" disabled={busy}>{busy ? "Saving…" : "Save profile"}</Button>
     </form>
