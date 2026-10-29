@@ -1,6 +1,6 @@
 // Editable placeholders — replace with the instructor's real details before launch.
 export const site = {
-  brandName: "[Your Academy]",
+  brandName: "MAS Academy",
   tagline: "Self-paced courses in coding, robotics, finance, maths & science",
   currency: "USD",
   locale: "en",
