@@ -22,8 +22,8 @@ export const site = {
   ],
   instructor: {
     name: "Mohammad Ali Saleh",
-    title: "Business Administration Specialist & Educator",
-    bio: "Two decades in business administration and seven years teaching school students — bringing real-world finance and technology into clear, practical lessons.",
+    title: "Interdisciplinary Educator · Tutor · Business Administration Specialist",
+    bio: "A tutor and business administration specialist connecting coding, robotics, mathematics, science, finance and business through practical learning — two decades in business and seven years teaching school students.",
     qualifications: [
       "Master's degree in Accounting and Auditing",
       "License (Bachelor's) in Finance",
