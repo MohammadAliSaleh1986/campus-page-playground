@@ -34,11 +34,15 @@ function AdminPage() {
   </section>;
 }
 
+const STATUS_FILTERS = ["all", "pending", "approved", "rejected"] as const;
+
 function Payments() {
   const { data } = useSuspenseQuery(adminEnrollmentsQuery);
   const { data: courses } = useSuspenseQuery(adminCoursesQuery);
   const qc = useQueryClient();
   const [busy, setBusy] = useState("");
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState<(typeof STATUS_FILTERS)[number]>("pending");
   const title = (slug: string) => (courses.find((c) => c.slug === slug)?.content as { title?: string } | undefined)?.title ?? slug;
   async function setStatus(id: string, status: "approved" | "rejected") {
     setBusy(id);
@@ -51,8 +55,39 @@ function Payments() {
     if (data) window.open(data.signedUrl, "_blank", "noopener");
   }
   if (!data.length) return <p className="py-8 text-muted-foreground">No payment requests yet.</p>;
+  const q = search.trim().toLowerCase();
+  const filtered = data.filter((e) => {
+    if (statusFilter !== "all" && e.status !== statusFilter) return false;
+    if (!q) return true;
+    return [e.student_name, title(e.course_slug), e.whish_reference ?? "", e.note ?? ""]
+      .some((field) => field.toLowerCase().includes(q));
+  });
+  const countFor = (s: (typeof STATUS_FILTERS)[number]) => (s === "all" ? data.length : data.filter((e) => e.status === s).length);
   return <div className="mt-4 space-y-3">
-    {data.map((e) => <div key={e.id} className="flex flex-wrap items-center justify-between gap-4 rounded-xl border p-4">
+    <div className="flex flex-wrap items-center gap-3">
+      <Input
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Search by student, course or Whish ref…"
+        className="min-w-60 flex-1"
+        aria-label="Search payment requests"
+      />
+      <div className="flex flex-wrap gap-1" role="group" aria-label="Filter by status">
+        {STATUS_FILTERS.map((s) => (
+          <Button
+            key={s}
+            size="sm"
+            variant={statusFilter === s ? "default" : "outline"}
+            onClick={() => setStatusFilter(s)}
+            className="capitalize"
+          >
+            {s} ({countFor(s)})
+          </Button>
+        ))}
+      </div>
+    </div>
+    {!filtered.length && <p className="py-8 text-muted-foreground">No payment requests match your search.</p>}
+    {filtered.map((e) => <div key={e.id} className="flex flex-wrap items-center justify-between gap-4 rounded-xl border p-4">
       <div className="min-w-0 text-sm">
         <p className="font-semibold">{e.student_name} · {title(e.course_slug)}</p>
         <p className="text-muted-foreground">{formatPrice(Number(e.amount))} · Whish ref: {e.whish_reference || "—"} · {new Date(e.created_at).toLocaleDateString()}</p>
