@@ -55,8 +55,9 @@ function CourseDetail() {
             <img src={c.thumbnail} alt="" width={1024} height={640} className="aspect-[16/10] w-full rounded-lg object-cover" />
             <p className="mt-5 font-display text-3xl font-bold text-primary">{formatPrice(c.price)}</p>
             <p className="text-sm text-muted-foreground">One-time payment · lifetime access</p>
-            <Button className="mt-4 w-full" size="lg" disabled title="Checkout arrives in a later stage">Enroll now</Button>
-            <p className="mt-2 text-center text-xs text-muted-foreground">Secure checkout coming soon</p>
+            <Button asChild className="mt-4 w-full" size="lg"><Link to="/enroll/$slug" params={{ slug: c.slug }}>Enroll now</Link></Button>
+            <Link to="/learn/$slug" params={{ slug: c.slug }} className="mt-2 block text-center text-sm font-semibold text-accent">Go to lessons</Link>
+            <p className="mt-1 text-center text-xs text-muted-foreground">Pay with Whish Money</p>
             {c.includedInSubscription && (
               <p className="mt-4 rounded-lg bg-accent-soft p-3 text-sm">Also included in <Link to="/pricing" className="font-semibold text-accent underline">subscription plans</Link>.</p>
             )}

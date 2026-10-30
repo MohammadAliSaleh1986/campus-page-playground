@@ -13,3 +13,4 @@
 - Student profiles use owner-scoped RLS and authenticated server functions; protected pages live under the client-only managed authentication layout.
 - A single root account provider owns auth events and cache invalidation; sign-out cancels and clears queries before ending the session.
 - Roles live only in public.user_roles and are checked through the security-definer public.has_role(); admin permissions are enforced by RLS and server-side role checks, never by profile fields or client state.
+- Course videos are Google Drive file IDs embedded via the /preview player; access is gated by RLS on course_videos (approved enrollment, preview flag, or admin). Signed-in data uses the browser client with RLS.

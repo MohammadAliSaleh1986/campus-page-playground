@@ -30,7 +30,7 @@ function Learn() {
   return <section className="container-page py-10">
     <h1 className="text-3xl font-bold text-primary">{course?.title ?? "Course"}</h1>
     {!approved && <p className="mt-3 rounded-lg bg-secondary p-3 text-sm">You can watch free previews. <Link to="/enroll/$slug" params={{ slug }} className="font-semibold text-accent underline">Enroll</Link> to unlock every lesson.</p>}
-    {!videos.length ? <p className="mt-8 text-muted-foreground">No videos available yet.</p> :
+    {!video ? <p className="mt-8 text-muted-foreground">No videos available yet.</p> :
     <div className="mt-6 grid gap-6 lg:grid-cols-[2fr_1fr]">
       <div>
         <iframe key={video.id} src={driveEmbedUrl(video.drive_file_id)} title={video.title} allow="autoplay" allowFullScreen className="aspect-video w-full rounded-xl border bg-muted" />
