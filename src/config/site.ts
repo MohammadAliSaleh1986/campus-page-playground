@@ -1,4 +1,5 @@
-// Editable placeholders — replace with the instructor's real details before launch.
+import instructorPhoto from "@/assets/mohammad-ali-saleh.png.asset.json";
+
 export const site = {
   brandName: "MAS Academy",
   tagline: "Self-paced courses in coding, robotics, finance, maths & science",
@@ -22,6 +23,11 @@ export const site = {
   ],
   instructor: {
     name: "Mohammad Ali Saleh",
+    photo: instructorPhoto.url,
+    achievements: [
+      { value: "60+", label: "students taught", qualifier: "Approximately" },
+      { value: "2,000+", label: "technology-skills classes", qualifier: "Around" },
+    ],
     title: "Interdisciplinary Educator · Tutor · Business Administration Specialist",
     bio: "A tutor and business administration specialist connecting coding, robotics, mathematics, science, finance and business through practical learning — two decades in business and seven years teaching school students.",
     qualifications: [

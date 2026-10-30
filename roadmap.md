@@ -8,7 +8,7 @@
 # Stage 3
 - [x] Interview the user about the admin area and payments.
 - [x] Request-access flow: Whish receipt + reference, admin approves.
-- [ ] App emails (needs the user's own web address for sending).
+- [x] App emails cancelled at the user's request.
 - [x] Delete all test student accounts and the hotmail account.
 - [x] Make mohammadalisalehg@gmail.com the admin.
 - [x] Admin area: courses, prices, Google Drive videos.

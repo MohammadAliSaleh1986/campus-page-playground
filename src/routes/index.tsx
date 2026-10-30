@@ -17,6 +17,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Recorded courses for students aged 6–16 in coding, robotics, finance, maths and science, taught by an experienced educator." },
       { property: "og:title", content: `${site.brandName} — Self-paced online courses` },
       { property: "og:description", content: "Recorded courses in coding, robotics, finance, maths and science for curious students." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,
@@ -100,12 +102,20 @@ function Home() {
       <section className="container-page grid gap-10 py-20 md:grid-cols-[1fr_1.3fr]">
         <div>
           <p className="eyebrow">Your instructor</p>
+          <img src={site.instructor.photo} alt={site.instructor.name} width={705} height={719} loading="lazy" className="mt-4 aspect-square w-full max-w-sm rounded-lg object-cover" />
           <h2 className="mt-2 text-3xl font-bold text-primary">{site.instructor.name}</h2>
           <p className="mt-1 font-medium text-muted-foreground">{site.instructor.title}</p>
           <p className="mt-4 text-muted-foreground">{site.instructor.bio}</p>
           <Link to="/about" className="mt-5 inline-block text-sm font-semibold text-accent hover:underline">Read the full story →</Link>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
+          {site.instructor.achievements.map((achievement) => (
+            <div key={achievement.label} className="rounded-lg border bg-accent-soft p-6">
+              <p className="text-sm text-muted-foreground">{achievement.qualifier}</p>
+              <p className="mt-1 font-display text-4xl font-bold text-primary">{achievement.value}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{achievement.label}</p>
+            </div>
+          ))}
           {site.instructor.experience.map((e) => (
             <div key={e.label} className="rounded-xl border bg-card p-6 shadow-card">
               <p className="font-display text-4xl font-bold text-primary">{e.years}+</p>
