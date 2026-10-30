@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { myEnrollmentsQuery } from "@/lib/learning";
 import { queryOptions, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useState, type FormEvent } from "react";
@@ -44,5 +45,15 @@ function AccountPage() {
       {message && <p role="status" className="text-sm text-accent">{message}</p>}{error && <p role="alert" className="text-sm text-destructive">{error}</p>}
       <Button type="submit" disabled={busy}>{busy ? "Saving…" : "Save profile"}</Button>
     </form>
+    {data.is_admin && <Button asChild variant="outline" className="mt-8"><Link to="/admin">Open admin area</Link></Button>}
+    <MyCourses />
   </section>;
+}
+function MyCourses() {
+  const { data } = useSuspenseQuery(myEnrollmentsQuery);
+  if (!data.length) return null;
+  return <div className="mt-10"><h2 className="text-xl font-bold text-primary">My courses</h2><ul className="mt-3 space-y-2">
+    {data.map(e => <li key={e.id} className="flex items-center justify-between rounded-lg border p-3 text-sm"><span>{e.course_slug} · <span className="capitalize">{e.status}</span></span>
+      {e.status === "approved" ? <Link to="/learn/$slug" params={{ slug: e.course_slug }} className="font-semibold text-accent">Watch</Link> : <Link to="/enroll/$slug" params={{ slug: e.course_slug }} className="font-semibold text-accent">Details</Link>}</li>)}
+  </ul></div>;
 }
