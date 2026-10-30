@@ -11,6 +11,7 @@ export const catalogQuery = queryOptions({
   staleTime: 60_000,
   queryFn: async (): Promise<Course[]> => (await getCourses()).map((row) => {
     const content = row.content as unknown as Omit<Course, "slug" | "thumbnail">;
-    return { objectives: [], prerequisites: [], requirements: [], curriculum: [], faqs: [], subtitle: "", description: "", ...content, price: Number(content.price ?? 0), slug: row.slug, thumbnail: thumbnails[content.subject] ?? coding };
+    const defaults = { objectives: [], prerequisites: [], requirements: [], curriculum: [], faqs: [], subtitle: "", description: "" };
+    return { ...defaults, ...content, price: Number(content.price ?? 0), slug: row.slug, thumbnail: thumbnails[content.subject] ?? coding };
   }),
 });

@@ -33,9 +33,9 @@ function CourseForm() {
   const qc = useQueryClient();
   const content = (row?.content ?? {}) as Record<string, unknown>;
   const [form, setForm] = useState({
-    title: String(content.title ?? ""), subtitle: String(content.subtitle ?? ""), description: String(content.description ?? ""),
-    subject: String(content.subject ?? "coding"), difficulty: String(content.difficulty ?? "Beginner"), ageGroup: String(content.ageGroup ?? "10-12"),
-    price: String(content.price ?? 0), objectives: ((content.objectives as string[]) ?? []).join("\n"),
+    title: String(content["title"] ?? ""), subtitle: String(content["subtitle"] ?? ""), description: String(content["description"] ?? ""),
+    subject: String(content["subject"] ?? "coding"), difficulty: String(content["difficulty"] ?? "Beginner"), ageGroup: String(content["ageGroup"] ?? "10-12"),
+    price: String(content["price"] ?? 0), objectives: ((content["objectives"] as string[]) ?? []).join("\n"),
   });
   const [published, setPublished] = useState(row?.published ?? false);
   const [msg, setMsg] = useState("");

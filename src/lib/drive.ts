@@ -2,7 +2,7 @@
 export function driveFileId(input: string): string | null {
   const s = input.trim();
   const m = s.match(/\/file\/d\/([\w-]{10,})/) ?? s.match(/[?&]id=([\w-]{10,})/);
-  if (m) return m[1];
+  if (m?.[1]) return m[1];
   return /^[\w-]{10,}$/.test(s) ? s : null;
 }
 
