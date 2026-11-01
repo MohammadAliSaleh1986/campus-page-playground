@@ -102,7 +102,7 @@ function Home() {
       <section className="container-page grid gap-10 py-20 md:grid-cols-[1fr_1.3fr]">
         <div>
           <p className="eyebrow">Your instructor</p>
-          <img src={site.instructor.photo} alt={site.instructor.name} width={705} height={719} loading="lazy" className="mt-4 aspect-square w-full max-w-sm rounded-lg object-cover" />
+          <img src={site.instructor.photo} alt={site.instructor.name} width={705} height={719} loading="lazy" className="mt-4 aspect-square w-full max-w-sm rounded-full object-cover ring-8 ring-accent-soft/60" />
           <h2 className="mt-2 text-3xl font-bold text-primary">{site.instructor.name}</h2>
           <p className="mt-1 font-medium text-muted-foreground">{site.instructor.title}</p>
           <p className="mt-4 text-muted-foreground">{site.instructor.bio}</p>
