@@ -1,4 +1,4 @@
-import instructorPhoto from "@/assets/mohammad-ali-saleh.png.asset.json";
+import instructorPhoto from "@/assets/mohammad-ali-saleh-portrait.png.asset.json";
 
 export const site = {
   brandName: "MAS Academy",
