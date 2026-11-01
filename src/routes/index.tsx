@@ -7,6 +7,7 @@ import { generalFaqs, subjects } from "@/data/catalog";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { catalogQuery } from "@/lib/catalog-query";
 import { site } from "@/config/site";
+import { useAccount } from "@/hooks/use-account";
 import hero from "@/assets/hero.jpg";
 
 export const Route = createFileRoute("/")({
