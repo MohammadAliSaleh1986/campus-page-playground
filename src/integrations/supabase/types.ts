@@ -66,6 +66,7 @@ export type Database = {
         Row: {
           admin_note: string
           amount: number
+          completed_at: string | null
           course_slug: string
           created_at: string
           id: string
@@ -79,6 +80,7 @@ export type Database = {
         Insert: {
           admin_note?: string
           amount?: number
+          completed_at?: string | null
           course_slug: string
           created_at?: string
           id?: string
@@ -92,6 +94,7 @@ export type Database = {
         Update: {
           admin_note?: string
           amount?: number
+          completed_at?: string | null
           course_slug?: string
           created_at?: string
           id?: string
