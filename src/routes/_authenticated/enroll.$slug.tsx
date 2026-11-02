@@ -10,6 +10,7 @@ import { catalogQuery } from "@/lib/catalog-query";
 import { myEnrollmentsQuery } from "@/lib/learning";
 import { formatPrice, site } from "@/config/site";
 import { pageMeta } from "@/lib/page-meta";
+import { courseStage, canRequestEnrollment, canWatchCourse } from "@/lib/course-stage";
 
 export const Route = createFileRoute("/_authenticated/enroll/$slug")({
   head: () => ({ meta: pageMeta("Enroll in a course", "Pay with Whish and send your receipt to get access.") }),
@@ -24,6 +25,7 @@ function Enroll() {
   const qc = useQueryClient();
   const course = courses.find((c) => c.slug === slug);
   const latest = mine.find((e) => e.course_slug === slug);
+  const stage = courseStage(slug, mine);
   const [ref, setRef] = useState("");
   const [note, setNote] = useState("");
   const [file, setFile] = useState<File | null>(null);
@@ -32,7 +34,9 @@ function Enroll() {
   if (!course) return <section className="container-page py-24 text-center"><p>Course not found.</p></section>;
 
   async function submit(e: FormEvent) {
-    e.preventDefault(); setBusy(true); setError("");
+    e.preventDefault();
+    if (!course || busy || !canRequestEnrollment(stage)) return;
+    setBusy(true); setError("");
     try {
       const { data: u } = await supabase.auth.getUser();
       if (!u.user) throw new Error();
@@ -42,18 +46,18 @@ function Enroll() {
         const up = await supabase.storage.from("receipts").upload(receipt_path, file);
         if (up.error) throw new Error();
       }
-      const { error } = await supabase.from("enrollments").insert({ user_id: u.user.id, course_slug: slug, amount: course!.price, whish_reference: ref, note, receipt_path });
+      const { error } = await supabase.from("enrollments").insert({ user_id: u.user.id, course_slug: slug, amount: course.price, whish_reference: ref, note, receipt_path });
       if (error) throw new Error();
       await qc.invalidateQueries({ queryKey: ["my-enrollments"] });
-    } catch { setError("Your request could not be sent. Please try again."); }
+    } catch { await qc.invalidateQueries({ queryKey: ["my-enrollments"] }); setError("Your request could not be sent. Check your enrollment status before trying again."); }
     finally { setBusy(false); }
   }
 
   return <section className="container-page max-w-xl py-14">
     <p className="eyebrow">Enroll</p>
     <h1 className="mt-2 text-3xl font-bold text-primary">{course.title}</h1>
-    {latest?.status === "approved" ? <div className="mt-6 rounded-xl bg-accent-soft p-5"><p className="font-semibold">Your payment is approved.</p><Button asChild className="mt-3"><Link to="/learn/$slug" params={{ slug }}>Start watching</Link></Button></div>
-    : latest?.status === "pending" ? <div className="mt-6 rounded-xl border p-5"><p className="font-semibold">Payment received — waiting for approval.</p><p className="mt-1 text-sm text-muted-foreground">You’ll get access as soon as {site.instructor.name} confirms your Whish payment.</p></div>
+    {canWatchCourse(stage) ? <div className="mt-6 rounded-xl bg-accent-soft p-5"><p className="font-semibold">Your payment is approved.</p><Button asChild className="mt-3"><Link to="/learn/$slug" params={{ slug }}>Start watching</Link></Button></div>
+    : stage === "requesting-approval" ? <div className="mt-6 rounded-xl border p-5"><p className="font-semibold">Payment received — waiting for approval.</p><p className="mt-1 text-sm text-muted-foreground">You’ll get access as soon as {site.instructor.name} confirms your Whish payment.</p></div>
     : <>
       {latest?.status === "rejected" && <p className="mt-4 rounded-lg bg-destructive/10 p-3 text-sm text-destructive">Your last request was not approved. Please check the payment and send it again, or contact us.</p>}
       <ol className="mt-6 list-decimal space-y-2 rounded-xl border p-5 pl-9 text-sm">

@@ -43,6 +43,13 @@
       "when": 1793308037146,
       "tag": "0005_admins_read_profiles",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1793639658936,
+      "tag": "0006_course_enrollment_stages",
+      "breakpoints": true
     }
   ]
 }

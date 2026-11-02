@@ -12,6 +12,8 @@ export const Route = createFileRoute("/pricing")({
       { name: "description", content: "Buy a single course or subscribe monthly or yearly. Clear terms on access and renewal." },
       { property: "og:title", content: `Pricing — ${site.brandName}` },
       { property: "og:description", content: "Individual courses or flexible subscriptions — choose what suits you." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Pricing,

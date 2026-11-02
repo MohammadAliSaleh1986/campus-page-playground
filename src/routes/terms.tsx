@@ -8,6 +8,8 @@ export const Route = createFileRoute("/terms")({
     { name: "description", content: 'Course access is personal and non-transferable. Sharing accounts or redistributing course content is not permitted.' },
     { property: "og:title", content: `Terms of Service — ${site.brandName}` },
     { property: "og:description", content: 'Course access is personal and non-transferable. Sharing accounts or redistributing course content is not permitted.' },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: () => (
     <>

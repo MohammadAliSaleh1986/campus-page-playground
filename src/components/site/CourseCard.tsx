@@ -2,16 +2,20 @@ import { Link } from "@tanstack/react-router";
 import { Clock, BarChart3, Users } from "lucide-react";
 import { type Course, courseMinutes, formatDuration, subjects } from "@/data/catalog";
 import { formatPrice } from "@/config/site";
+import { useCourseStages } from "@/hooks/use-course-stages";
+import { CourseStageBadge } from "./CourseStageBadge";
 
 export function CourseCard({ course }: { course: Course }) {
   const subject = subjects.find((s) => s.id === course.subject)?.label;
+  const { stageFor } = useCourseStages();
+  const stage = stageFor(course.slug);
   return (
     <Link
       to="/courses/$slug"
       params={{ slug: course.slug }}
       className="group flex flex-col overflow-hidden rounded-xl border bg-card shadow-card transition hover:-translate-y-0.5 hover:shadow-lift"
     >
-      <img src={course.thumbnail} alt="" loading="lazy" width={1024} height={640} className="aspect-[16/10] w-full object-cover" />
+      <div className="relative"><img src={course.thumbnail} alt="" loading="lazy" width={1024} height={640} className="aspect-[16/10] w-full object-cover" />{stage && <div className="absolute left-3 right-3 top-3"><CourseStageBadge stage={stage} /></div>}</div>
       <div className="flex flex-1 flex-col p-5">
         <span className="eyebrow">{subject}</span>
         <h3 className="mt-2 text-lg font-semibold text-foreground group-hover:text-primary">{course.title}</h3>

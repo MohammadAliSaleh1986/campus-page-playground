@@ -5,6 +5,9 @@ import { FaqList } from "@/components/site/FaqList";
 import { courseMinutes, formatDuration, lessonCount, subjects } from "@/data/catalog";
 import { catalogQuery } from "@/lib/catalog-query";
 import { formatPrice, site } from "@/config/site";
+import { useCourseStages } from "@/hooks/use-course-stages";
+import { CourseStageBadge } from "@/components/site/CourseStageBadge";
+import { canWatchCourse } from "@/lib/course-stage";
 
 export const Route = createFileRoute("/courses/$slug")({
   loader: async ({ params, context }) => {
@@ -20,6 +23,8 @@ export const Route = createFileRoute("/courses/$slug")({
           { name: "description", content: loaderData.course.description },
           { property: "og:title", content: loaderData.course.title },
           { property: "og:description", content: loaderData.course.description },
+          { property: "og:type", content: "website" },
+          { name: "twitter:card", content: "summary_large_image" },
         ]
       : [{ title: "Course unavailable" }, { name: "robots", content: "noindex" }],
   }),
@@ -35,6 +40,8 @@ export const Route = createFileRoute("/courses/$slug")({
 function CourseDetail() {
   const { course: c } = Route.useLoaderData();
   const subject = subjects.find((s) => s.id === c.subject)?.label;
+  const { stageFor, signedIn, loading, error } = useCourseStages();
+  const stage = stageFor(c.slug);
   return (
     <>
       <section className="bg-primary text-primary-foreground">
@@ -42,6 +49,7 @@ function CourseDetail() {
           <div>
             <Link to="/courses" search={{ subject: c.subject }} className="eyebrow">{subject}</Link>
             <h1 className="mt-3 text-3xl font-bold md:text-4xl">{c.title}</h1>
+            {stage && <div className="mt-4"><CourseStageBadge stage={stage} /></div>}
             <p className="mt-3 text-lg text-primary-foreground/80">{c.subtitle}</p>
             <div className="mt-6 flex flex-wrap gap-5 text-sm text-primary-foreground/85">
               <span className="flex items-center gap-1.5"><BarChart3 className="size-4" aria-hidden />{c.difficulty}</span>
@@ -55,8 +63,10 @@ function CourseDetail() {
             <img src={c.thumbnail} alt="" width={1024} height={640} className="aspect-[16/10] w-full rounded-lg object-cover" />
             <p className="mt-5 font-display text-3xl font-bold text-primary">{formatPrice(c.price)}</p>
             <p className="text-sm text-muted-foreground">One-time payment · lifetime access</p>
-            <Button asChild className="mt-4 w-full" size="lg"><Link to="/enroll/$slug" params={{ slug: c.slug }}>Enroll now</Link></Button>
-            <Link to="/learn/$slug" params={{ slug: c.slug }} className="mt-2 block text-center text-sm font-semibold text-accent">Go to lessons</Link>
+            {signedIn && (loading || error) ? <Button disabled className="mt-4 w-full" size="lg">{loading ? "Loading enrollment…" : "Enrollment unavailable"}</Button>
+            : stage === "requesting-approval" ? <><Button disabled className="mt-4 w-full" size="lg">Requesting approval</Button><p className="mt-2 text-center text-sm text-muted-foreground">Your payment is awaiting review.</p></>
+            : stage && canWatchCourse(stage) ? <Button asChild className="mt-4 w-full" size="lg"><Link to="/learn/$slug" params={{ slug: c.slug }}>{stage === "completed" ? "Review lessons" : "Start watching"}</Link></Button>
+            : <><Button asChild className="mt-4 w-full" size="lg"><Link to="/enroll/$slug" params={{ slug: c.slug }}>Enroll now</Link></Button><Link to="/learn/$slug" params={{ slug: c.slug }} className="mt-2 block text-center text-sm font-semibold text-accent">View previews</Link></>}
             <p className="mt-1 text-center text-xs text-muted-foreground">Pay with Whish Money</p>
             {c.includedInSubscription && (
               <p className="mt-4 rounded-lg bg-accent-soft p-3 text-sm">Also included in <Link to="/pricing" className="font-semibold text-accent underline">subscription plans</Link>.</p>

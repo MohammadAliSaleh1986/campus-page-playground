@@ -10,6 +10,7 @@ import { getProfile, saveProfile } from "@/lib/profile.functions";
 import { subjects } from "@/data/catalog";
 import { pageMeta } from "@/lib/page-meta";
 import { useAccount } from "@/hooks/use-account";
+import { courseStage, stageLabels, canWatchCourse } from "@/lib/course-stage";
 
 const profileQuery = queryOptions({ queryKey: ["profile"], queryFn: () => getProfile() });
 export const Route = createFileRoute("/_authenticated/account")({
@@ -52,8 +53,9 @@ function AccountPage() {
 function MyCourses() {
   const { data } = useSuspenseQuery(myEnrollmentsQuery);
   if (!data.length) return null;
+  const slugs = [...new Set(data.map(e => e.course_slug))];
   return <div className="mt-10"><h2 className="text-xl font-bold text-primary">My courses</h2><ul className="mt-3 space-y-2">
-    {data.map(e => <li key={e.id} className="flex items-center justify-between rounded-lg border p-3 text-sm"><span>{e.course_slug} · <span className="capitalize">{e.status}</span></span>
-      {e.status === "approved" ? <Link to="/learn/$slug" params={{ slug: e.course_slug }} className="font-semibold text-accent">Watch</Link> : <Link to="/enroll/$slug" params={{ slug: e.course_slug }} className="font-semibold text-accent">Details</Link>}</li>)}
+    {slugs.map(slug => { const stage = courseStage(slug, data); return <li key={slug} className="flex flex-wrap items-center justify-between gap-3 rounded-lg border p-3 text-sm"><span>{slug} · {stageLabels[stage]}</span>
+      {canWatchCourse(stage) ? <Link to="/learn/$slug" params={{ slug }} className="font-semibold text-accent">{stage === "completed" ? "Review" : "Watch"}</Link> : <Link to="/enroll/$slug" params={{ slug }} className="font-semibold text-accent">Details</Link>}</li>; })}
   </ul></div>;
 }

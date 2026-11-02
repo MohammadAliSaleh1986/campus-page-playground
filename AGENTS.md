@@ -14,4 +14,5 @@
 - A single root account provider owns auth events and cache invalidation; sign-out cancels and clears queries before ending the session.
 - Roles live only in public.user_roles and are checked through the security-definer public.has_role(); admin permissions are enforced by RLS and server-side role checks, never by profile fields or client state.
 - Course videos are Google Drive file IDs embedded via the /preview player; access is gated by RLS on course_videos (approved enrollment, preview flag, or admin). Signed-in data uses the browser client with RLS.
+- Course-stage rules share one browser-safe resolver across cards, catalog, account, and enrollment; database triggers prevent duplicate active requests, and completion is reserved for future verified assessments.
 - Instructor photos use CDN asset pointers and achievements live in the shared site configuration so the home and About pages stay consistent.
