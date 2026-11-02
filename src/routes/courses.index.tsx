@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 
 type Sort = "featured" | "newest" | "price-asc" | "price-desc";
 interface CatalogSearch {
-  stage?: CourseStage;
+  stage?: CourseStage | undefined;
   q?: string | undefined; subject?: Subject | undefined; age?: AgeGroup | undefined; level?: Difficulty | undefined; format?: Format | undefined; maxPrice?: number | undefined; sort?: Sort | undefined;
 }
 

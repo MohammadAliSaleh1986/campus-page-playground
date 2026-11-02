@@ -10,6 +10,8 @@ export const Route = createFileRoute("/contact")({
     { name: "description", content: `Reach ${site.brandName} by email or WhatsApp. Based in ${site.contact.location}.` },
     { property: "og:title", content: `Contact — ${site.brandName}` },
     { property: "og:description", content: `Reach ${site.brandName} by email or WhatsApp. Based in ${site.contact.location}.` },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: () => (
     <>

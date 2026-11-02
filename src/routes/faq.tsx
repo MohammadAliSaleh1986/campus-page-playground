@@ -10,6 +10,8 @@ export const Route = createFileRoute("/faq")({
     { name: "description", content: "Answers about courses, access, subscriptions and cancellations." },
     { property: "og:title", content: `FAQ — ${site.brandName}` },
     { property: "og:description", content: "Answers about courses, access, subscriptions and cancellations." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: () => (
     <>

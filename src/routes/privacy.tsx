@@ -8,6 +8,8 @@ export const Route = createFileRoute("/privacy")({
     { name: "description", content: 'We collect only the information needed to provide accounts, purchases and progress tracking, and never sell personal data. Student data for minors is ' },
     { property: "og:title", content: `Privacy Policy — ${site.brandName}` },
     { property: "og:description", content: 'We collect only the information needed to provide accounts, purchases and progress tracking, and never sell personal data. Student data for minors is ' },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: () => (
     <>

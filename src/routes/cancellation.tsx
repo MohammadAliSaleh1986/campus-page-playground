@@ -8,6 +8,8 @@ export const Route = createFileRoute("/cancellation")({
     { name: "description", content: 'You can cancel any time. Access continues until the end of the paid period; it does not renew afterwards.' },
     { property: "og:title", content: `Cancellation — ${site.brandName}` },
     { property: "og:description", content: 'You can cancel any time. Access continues until the end of the paid period; it does not renew afterwards.' },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: () => (
     <>

@@ -8,6 +8,8 @@ export const Route = createFileRoute("/refunds")({
     { name: "description", content: '[Define refund window, e.g. 14 days if less than X% of the course was watched.]' },
     { property: "og:title", content: `Refund Policy — ${site.brandName}` },
     { property: "og:description", content: '[Define refund window, e.g. 14 days if less than X% of the course was watched.]' },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: () => (
     <>
