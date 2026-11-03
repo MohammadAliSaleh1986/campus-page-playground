@@ -57,3 +57,24 @@ export const courseVideosQuery = (slug: string) => queryOptions({
     return data ?? [];
   },
 });
+
+export const courseQuizzesQuery = (slug: string) => queryOptions({
+  queryKey: ["course-quizzes", slug],
+  queryFn: async () => {
+    const { data, error } = await supabase.from("course_quizzes")
+      .select("id, title, pass_percent, required, position, quiz_questions(id, prompt, options, position)")
+      .eq("course_slug", slug).order("position").order("created_at");
+    fail(error, "Quizzes");
+    return (data ?? []).map((q) => ({ ...q, quiz_questions: [...(q.quiz_questions ?? [])].sort((a, b) => a.position - b.position) }));
+  },
+});
+
+export const myQuizAttemptsQuery = queryOptions({
+  queryKey: ["my-quiz-attempts"],
+  queryFn: async () => {
+    const { data: u } = await supabase.auth.getUser();
+    const { data, error } = await supabase.from("quiz_attempts").select("quiz_id, score, passed, created_at").eq("user_id", u.user?.id ?? "").order("created_at", { ascending: false });
+    fail(error, "Quiz results");
+    return data ?? [];
+  },
+});
