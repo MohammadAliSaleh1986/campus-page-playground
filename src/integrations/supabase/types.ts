@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      course_quizzes: {
+        Row: {
+          course_slug: string
+          created_at: string
+          id: string
+          pass_percent: number
+          position: number
+          required: boolean
+          title: string
+        }
+        Insert: {
+          course_slug: string
+          created_at?: string
+          id?: string
+          pass_percent?: number
+          position?: number
+          required?: boolean
+          title: string
+        }
+        Update: {
+          course_slug?: string
+          created_at?: string
+          id?: string
+          pass_percent?: number
+          position?: number
+          required?: boolean
+          title?: string
+        }
+        Relationships: []
+      }
       course_videos: {
         Row: {
           course_slug: string
@@ -128,6 +158,79 @@ export type Database = {
         }
         Relationships: []
       }
+      quiz_attempts: {
+        Row: {
+          created_at: string
+          id: string
+          passed: boolean
+          quiz_id: string
+          score: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          passed: boolean
+          quiz_id: string
+          score: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          passed?: boolean
+          quiz_id?: string
+          score?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_attempts_quiz_id_fkey"
+            columns: ["quiz_id"]
+            isOneToOne: false
+            referencedRelation: "course_quizzes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      quiz_questions: {
+        Row: {
+          correct_index: number
+          created_at: string
+          id: string
+          options: string[]
+          position: number
+          prompt: string
+          quiz_id: string
+        }
+        Insert: {
+          correct_index?: number
+          created_at?: string
+          id?: string
+          options: string[]
+          position?: number
+          prompt: string
+          quiz_id: string
+        }
+        Update: {
+          correct_index?: number
+          created_at?: string
+          id?: string
+          options?: string[]
+          position?: number
+          prompt?: string
+          quiz_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_questions_quiz_id_fkey"
+            columns: ["quiz_id"]
+            isOneToOne: false
+            referencedRelation: "course_quizzes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -161,6 +264,14 @@ export type Database = {
         }
         Returns: boolean
       }
+      quiz_answer_key: {
+        Args: { _quiz_id: string }
+        Returns: {
+          correct_index: number
+          id: string
+        }[]
+      }
+      submit_quiz: { Args: { _answers: Json; _quiz_id: string }; Returns: Json }
     }
     Enums: {
       app_role: "admin" | "student"

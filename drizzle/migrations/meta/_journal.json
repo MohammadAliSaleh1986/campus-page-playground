@@ -50,6 +50,13 @@
       "when": 1793639658936,
       "tag": "0006_course_enrollment_stages",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1793724312067,
+      "tag": "0007_course_quizzes",
+      "breakpoints": true
     }
   ]
 }
