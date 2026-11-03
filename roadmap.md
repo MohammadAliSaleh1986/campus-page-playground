@@ -6,10 +6,10 @@
 - [x] Verify saved profiles and authenticated access (tested end to end: sign-up, email confirmation, sign-in, profile save, sign-out).
 
 # Stage 3
-- [ ] Add course-stage banners and catalog filters.
-- [ ] Enforce pending-request access and duplicate restrictions.
-- [ ] Prepare assessment-based completion stage without adding quizzes.
-- [ ] Test enrollment-stage behavior.
+- [x] Add course-stage banners and catalog filters.
+- [x] Enforce pending-request access and duplicate restrictions.
+- [x] Prepare assessment-based completion stage without adding quizzes.
+- [x] Test enrollment-stage behavior (14 unit tests; signed-in catalog, saved pending request, blocked enrollment and lesson access).
 - [x] Interview the user about the admin area and payments.
 - [x] Request-access flow: Whish receipt + reference, admin approves.
 - [x] App emails cancelled at the user's request.
