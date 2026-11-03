@@ -4,7 +4,8 @@ import { useState } from "react";
 import { PlayCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { catalogQuery } from "@/lib/catalog-query";
-import { courseVideosQuery, myEnrollmentsQuery, isAdminQuery } from "@/lib/learning";
+import { courseVideosQuery, myEnrollmentsQuery, isAdminQuery, courseQuizzesQuery, myQuizAttemptsQuery } from "@/lib/learning";
+import { StudentQuizzes } from "@/components/site/StudentQuizzes";
 import { courseStage, canWatchCourse } from "@/lib/course-stage";
 import { CourseStageBadge } from "@/components/site/CourseStageBadge";
 import { driveEmbedUrl } from "@/lib/drive";
@@ -17,6 +18,8 @@ export const Route = createFileRoute("/_authenticated/learn/$slug")({
     context.queryClient.ensureQueryData(isAdminQuery),
     context.queryClient.ensureQueryData(myEnrollmentsQuery),
     context.queryClient.ensureQueryData(courseVideosQuery(params.slug)),
+    context.queryClient.ensureQueryData(courseQuizzesQuery(params.slug)),
+    context.queryClient.ensureQueryData(myQuizAttemptsQuery),
   ]),
   component: Learn,
 });
@@ -46,5 +49,6 @@ function Learn() {
         {videos.map((v, i) => <li key={v.id}><Button variant={i === current ? "default" : "outline"} className="w-full justify-start" onClick={() => setCurrent(i)}><PlayCircle className="size-4" aria-hidden />{i + 1}. {v.title}</Button></li>)}
       </ol>
     </div>}
+    {approved && !isAdmin && <StudentQuizzes slug={slug} />}
   </section>;
 }

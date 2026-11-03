@@ -11,6 +11,7 @@ import { driveEmbedUrl, driveFileId } from "@/lib/drive";
 import { subjects } from "@/data/catalog";
 import { pageMeta } from "@/lib/page-meta";
 import { NotAdmin } from "./admin.index";
+import { AdminQuizzes } from "@/components/site/AdminQuizzes";
 
 export const Route = createFileRoute("/_authenticated/admin/courses/$slug")({
   head: () => ({ meta: pageMeta("Edit course", "Edit course details, price and Google Drive videos.") }),
@@ -66,6 +67,7 @@ function CourseForm() {
       <div className="flex items-center gap-3 sm:col-span-2"><Button type="submit">Save course</Button>{msg && <span role="status" className="text-sm text-muted-foreground">{msg}</span>}</div>
     </form>
     <Videos slug={slug} />
+    <AdminQuizzes slug={slug} />
   </section>;
 }
 
