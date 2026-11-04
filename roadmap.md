@@ -18,3 +18,8 @@
 - [x] Admin area: courses, prices, Google Drive videos.
 - [x] Admin approval of payments and course access.
 - [x] Add and verify admin quiz attempts, scores and pass status by student and course (3 unit tests; signed-in real attempts, search, course filter and mobile table).
+
+# Student dashboard
+- [ ] Add parent-friendly progress and quiz history through the child's account.
+- [ ] Add downloadable certificates gated by required quiz completion.
+- [ ] Test progress rules and verify dashboard and certificate downloads.
