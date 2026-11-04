@@ -78,3 +78,30 @@ export const myQuizAttemptsQuery = queryOptions({
     return data ?? [];
   },
 });
+
+export const adminQuizAttemptsQuery = queryOptions({
+  queryKey: ["admin-quiz-attempts"],
+  queryFn: async () => {
+    const { data: attempts, error } = await supabase.from("quiz_attempts")
+      .select("id, user_id, quiz_id, score, passed, created_at")
+      .order("created_at", { ascending: false });
+    fail(error, "Student quiz attempts");
+    if (!attempts?.length) return [];
+    const userIds = [...new Set(attempts.map((a) => a.user_id))];
+    const quizIds = [...new Set(attempts.map((a) => a.quiz_id))];
+    const [profiles, quizzes] = await Promise.all([
+      supabase.from("profiles").select("id, display_name").in("id", userIds),
+      supabase.from("course_quizzes").select("id, course_slug, title").in("id", quizIds),
+    ]);
+    fail(profiles.error, "Student names");
+    fail(quizzes.error, "Quiz details");
+    const names = new Map((profiles.data ?? []).map((p) => [p.id, p.display_name]));
+    const quizDetails = new Map((quizzes.data ?? []).map((q) => [q.id, q]));
+    return attempts.map((a) => ({
+      ...a,
+      student_name: names.get(a.user_id)?.trim() || `Student · ${a.user_id.slice(0, 8)}`,
+      course_slug: quizDetails.get(a.quiz_id)?.course_slug ?? "unknown-course",
+      quiz_title: quizDetails.get(a.quiz_id)?.title ?? "Unavailable quiz",
+    }));
+  },
+});
