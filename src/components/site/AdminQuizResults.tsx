@@ -16,7 +16,7 @@ export function AdminQuizResults() {
     (course === "all" || g.courseSlug === course) &&
     (!query || [g.studentName, g.userId, title(g.courseSlug), ...g.attempts.map((a) => a.quiz_title)].some((v) => v.toLowerCase().includes(query))),
   );
-  return <div className="mt-6">
+  return <div className="mt-6 min-w-0 max-w-full overflow-hidden">
     <h2 className="text-2xl font-bold text-primary">Student quiz results</h2>
     <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_16rem]">
       <div className="space-y-2"><Label htmlFor="quiz-results-search">Search</Label><Input id="quiz-results-search" placeholder="Student, course or quiz" value={search} onChange={(e) => setSearch(e.target.value)} /></div>
