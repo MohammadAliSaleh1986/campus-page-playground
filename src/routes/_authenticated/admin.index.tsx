@@ -9,9 +9,10 @@ import { supabase } from "@/integrations/supabase/client";
 import { adminCoursesQuery, adminEnrollmentsQuery, isAdminQuery } from "@/lib/learning";
 import { formatPrice } from "@/config/site";
 import { pageMeta } from "@/lib/page-meta";
+import { AdminQuizResults } from "@/components/site/AdminQuizResults";
 
 export const Route = createFileRoute("/_authenticated/admin/")({
-  head: () => ({ meta: pageMeta("Admin area", "Approve student payments and manage courses, videos and prices.") }),
+  head: () => ({ meta: pageMeta("Admin area", "Review student quiz attempts and scores, approve payments and manage courses, videos and prices.") }),
   loader: ({ context }) => context.queryClient.ensureQueryData(isAdminQuery),
   component: AdminPage,
 });
@@ -27,9 +28,10 @@ function AdminPage() {
     <p className="eyebrow">Admin area</p>
     <h1 className="mt-2 text-3xl font-bold text-primary">Manage your academy</h1>
     <Tabs defaultValue="payments" className="mt-8">
-      <TabsList><TabsTrigger value="payments">Payments</TabsTrigger><TabsTrigger value="courses">Courses, videos & prices</TabsTrigger></TabsList>
+      <TabsList className="h-auto flex-wrap"><TabsTrigger value="payments">Payments</TabsTrigger><TabsTrigger value="courses">Courses, videos & prices</TabsTrigger><TabsTrigger value="quiz-results">Quiz results</TabsTrigger></TabsList>
       <TabsContent value="payments"><Payments /></TabsContent>
       <TabsContent value="courses"><Courses /></TabsContent>
+      <TabsContent value="quiz-results"><AdminQuizResults /></TabsContent>
     </Tabs>
   </section>;
 }
@@ -95,7 +97,7 @@ function Payments() {
       </div>
       <div className="flex flex-wrap items-center gap-2">
         <StatusBadge status={e.status} />
-        {e.receipt_path && <Button variant="outline" size="sm" onClick={() => openReceipt(e.receipt_path!)}>View receipt</Button>}
+        {e.receipt_path && <Button variant="outline" size="sm" onClick={() => { if (e.receipt_path) void openReceipt(e.receipt_path); }}>View receipt</Button>}
         {e.status !== "approved" && <Button size="sm" disabled={busy === e.id} onClick={() => setStatus(e.id, "approved")}>Approve</Button>}
         {e.status !== "rejected" && <Button size="sm" variant="outline" disabled={busy === e.id} onClick={() => setStatus(e.id, "rejected")}>{e.status === "approved" ? "Revoke" : "Reject"}</Button>}
       </div>
