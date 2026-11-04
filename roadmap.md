@@ -17,4 +17,4 @@
 - [x] Make mohammadalisalehg@gmail.com the admin.
 - [x] Admin area: courses, prices, Google Drive videos.
 - [x] Admin approval of payments and course access.
-- [ ] Add and verify admin quiz attempts, scores and pass status by student and course.
+- [x] Add and verify admin quiz attempts, scores and pass status by student and course (3 unit tests; signed-in real attempts, search, course filter and mobile table).
