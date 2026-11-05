@@ -163,7 +163,7 @@ export const generalFaqs = [
   { q: "Who are the courses for?", a: "Mainly school students aged about 6–16, plus anyone curious about finance and technology." },
   { q: "Are the lessons live?", a: "No. All courses are recorded, so students learn at their own pace, any time." },
   { q: "What's the difference between buying a course and subscribing?", a: "Buying gives lasting access to one course. A subscription unlocks all eligible courses while it is active." },
-  { q: "Can parents follow progress?", a: "Students see their progress on their dashboard; parent-friendly reports are planned." },
+  { q: "Can parents follow progress?", a: "Yes. Sign in through your child's student account to view course progress, quiz scores and attempt history on the dashboard." },
   { q: "Can I cancel a subscription?", a: "Yes, at any time. You keep access until the end of the period you already paid for." },
-  { q: "Do I get a certificate?", a: "Completion certificates are planned for courses that finish with a final assessment." },
+  { q: "Do I get a certificate?", a: "A course completion certificate is available to download from the dashboard after passing every required assessment quiz. Courses without required quizzes do not issue certificates." },
 ];
