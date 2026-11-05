@@ -20,6 +20,6 @@
 - [x] Add and verify admin quiz attempts, scores and pass status by student and course (3 unit tests; signed-in real attempts, search, course filter and mobile table).
 
 # Student dashboard
-- [ ] Add parent-friendly progress and quiz history through the child's account.
-- [ ] Add downloadable certificates gated by required quiz completion.
-- [ ] Test progress rules and verify dashboard and certificate downloads.
+- [x] Add parent-friendly progress and quiz history through the child's account.
+- [x] Add downloadable certificates gated by required quiz completion.
+- [x] Test progress rules and verify dashboard and certificate downloads (15 tests; real student scores and PDF download; desktop/mobile).
