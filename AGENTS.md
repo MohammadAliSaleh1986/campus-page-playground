@@ -17,3 +17,4 @@
 - Course-stage rules share one browser-safe resolver across cards, catalog, account, and enrollment; database triggers prevent duplicate active requests, and completion is reserved for future verified assessments.
 - Instructor photos use CDN asset pointers and achievements live in the shared site configuration so the home and About pages stay consistent.
 - Admin quiz reporting reads recorded attempts, quiz labels and student names through the browser client with existing admin RLS; a shared browser-safe grouper preserves individual outcomes and per-quiz attempt numbering without fetching answer keys.
+- Student dashboards use owner-scoped authenticated server reads; certificate PDFs recheck approved enrollment and all required quiz passes server-side, preventing client state from authorizing awards. Progress measures assessments, not Google Drive viewing time.

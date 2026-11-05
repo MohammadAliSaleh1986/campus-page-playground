@@ -31,7 +31,7 @@ export function SiteHeader() {
     if (failure) { setError("Unable to sign out. Please try again."); return; }
     await navigate({ to: "/auth", replace: true });
   }
-  const accountControls = user ? <><Button asChild variant="ghost" size="sm"><Link to="/account">My account</Link></Button><Button variant="ghost" size="sm" disabled={busy} onClick={signOut}>Sign out</Button></> : <Button asChild variant="ghost" size="sm" disabled={!ready}><Link to="/auth">Sign in</Link></Button>;
+  const accountControls = user ? <><Button asChild variant="ghost" size="sm"><Link to="/dashboard" onClick={() => setOpen(false)}>Dashboard</Link></Button><Button asChild variant="ghost" size="sm"><Link to="/account" onClick={() => setOpen(false)}>My account</Link></Button><Button variant="ghost" size="sm" disabled={busy} onClick={signOut}>Sign out</Button></> : <Button asChild variant="ghost" size="sm" disabled={!ready}><Link to="/auth">Sign in</Link></Button>;
   return (
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur">
       <div className="container-page flex h-16 items-center justify-between gap-4">
@@ -63,7 +63,7 @@ export function SiteHeader() {
             {nav.map((n) => (
               <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="py-3 font-medium text-foreground">{n.label}</Link>
             ))}
-            <div className="flex gap-2 border-t py-3">{accountControls}</div>
+            <div className="flex flex-wrap gap-2 border-t py-3">{accountControls}</div>
           </div>
         </nav>
       )}

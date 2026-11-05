@@ -47,6 +47,7 @@ function AccountPage() {
       <Button type="submit" disabled={busy}>{busy ? "Saving…" : "Save profile"}</Button>
     </form>
     {data.is_admin && <Button asChild variant="outline" className="mt-8"><Link to="/admin">Open admin area</Link></Button>}
+    <Button asChild variant="outline" className="mt-8 ml-0"><Link to="/dashboard">View learning progress</Link></Button>
     <MyCourses />
   </section>;
 }

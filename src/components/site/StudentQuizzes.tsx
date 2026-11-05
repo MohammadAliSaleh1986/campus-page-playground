@@ -41,7 +41,7 @@ function QuizForm({ quizId, questions }: { quizId: string; questions: { id: stri
     const { data, error } = await supabase.rpc("submit_quiz", { _quiz_id: quizId, _answers: answers });
     if (error) return setError("Your answers could not be submitted. Please try again.");
     setResult(data as unknown as Result);
-    await Promise.all([qc.invalidateQueries({ queryKey: ["my-quiz-attempts"] }), qc.invalidateQueries({ queryKey: ["my-enrollments"] })]);
+    await Promise.all([qc.invalidateQueries({ queryKey: ["my-quiz-attempts"] }), qc.invalidateQueries({ queryKey: ["my-enrollments"] }), qc.invalidateQueries({ queryKey: ["student-dashboard"] })]);
   }
   if (!questions.length) return <p className="mt-3 text-sm text-muted-foreground">This quiz has no questions yet.</p>;
   if (result) return <div role="status" className="mt-3 rounded-lg bg-secondary p-3 text-sm">
