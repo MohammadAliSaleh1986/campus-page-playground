@@ -9,7 +9,7 @@ export function SiteFooter() {
         <div className="md:col-span-2">
           <p className="font-display text-xl font-bold">{site.brandName}</p>
           <p className="mt-3 max-w-sm text-sm text-primary-foreground/70">{site.tagline}</p>
-          <div className="mt-5 flex gap-4 text-sm">
+          <div className="mt-5 flex flex-wrap gap-4 text-sm">
             {site.social.map((s) => <a key={s.label} href={s.href} className="text-primary-foreground/80 hover:text-primary-foreground">{s.label}</a>)}
           </div>
         </div>
