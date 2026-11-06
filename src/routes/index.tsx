@@ -43,7 +43,8 @@ function Home() {
       <section className="bg-secondary">
         <div className="container-page grid items-center gap-10 py-16 md:grid-cols-2 md:py-24">
           <div>
-            <p className="eyebrow">Self-paced online learning</p>
+            <img src={site.logo.src} alt={site.logo.alt} width={594} height={570} className="h-28 w-auto" />
+            <p className="eyebrow mt-4">Self-paced online learning</p>
             <h1 className="mt-3 text-4xl font-bold leading-tight text-primary md:text-5xl">
               Real skills in coding, robotics and finance — learned at your own pace.
             </h1>

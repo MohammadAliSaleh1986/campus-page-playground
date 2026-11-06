@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { GraduationCap, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { site } from "@/config/site";
 import { useAccount } from "@/hooks/use-account";
@@ -36,9 +36,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur">
       <div className="container-page flex h-16 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold text-primary">
-          <span className="grid size-9 place-items-center rounded-lg bg-primary text-primary-foreground">
-            <GraduationCap className="size-5" aria-hidden />
-          </span>
+          <img src={site.logo.mark} alt="" width={36} height={36} className="size-9 shrink-0 rounded-full object-cover ring-1 ring-primary/15" />
           {site.brandName}
         </Link>
         <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
