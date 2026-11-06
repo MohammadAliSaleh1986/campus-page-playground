@@ -55,7 +55,10 @@ function Home() {
               {!user && <Button asChild size="lg" variant="outline"><Link to="/auth" search={{ mode: "signup" }}>Create an account</Link></Button>}
             </div>
           </div>
-          <img src={hero} alt="Student learning online with a laptop and robotics kit" width={1536} height={1024} className="rounded-2xl shadow-lift" />
+          <div className="relative">
+            <img src={hero} alt="Student learning online with a laptop and robotics kit" width={1536} height={1024} className="rounded-2xl shadow-lift" />
+            <img src={site.logo.src} alt={site.logo.alt} width={497} height={497} className="absolute -bottom-6 -left-6 size-24 rounded-full shadow-lift ring-4 ring-background sm:size-28" />
+          </div>
         </div>
       </section>
 
