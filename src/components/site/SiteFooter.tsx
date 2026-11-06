@@ -7,7 +7,7 @@ export function SiteFooter() {
     <footer className="mt-24 bg-navy-deep text-primary-foreground">
       <div className="container-page grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
-          <img src={site.logo.src} alt={site.logo.alt} width={594} height={570} loading="lazy" className="h-24 w-auto" />
+          <img src={site.logo.src} alt={site.logo.alt} width={497} height={497} loading="lazy" className="size-24 rounded-full" />
           <p className="mt-3 max-w-sm text-sm text-primary-foreground/70">{site.tagline}</p>
           <div className="mt-5 flex flex-wrap gap-4 text-sm">
             {site.social.map((s) => <a key={s.label} href={s.href} className="text-primary-foreground/80 hover:text-primary-foreground">{s.label}</a>)}

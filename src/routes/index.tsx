@@ -43,8 +43,7 @@ function Home() {
       <section className="bg-secondary">
         <div className="container-page grid items-center gap-10 py-16 md:grid-cols-2 md:py-24">
           <div>
-            <img src={site.logo.src} alt={site.logo.alt} width={594} height={570} className="h-28 w-auto" />
-            <p className="eyebrow mt-4">Self-paced online learning</p>
+            <p className="eyebrow">Self-paced online learning</p>
             <h1 className="mt-3 text-4xl font-bold leading-tight text-primary md:text-5xl">
               Real skills in coding, robotics and finance — learned at your own pace.
             </h1>
@@ -56,7 +55,10 @@ function Home() {
               {!user && <Button asChild size="lg" variant="outline"><Link to="/auth" search={{ mode: "signup" }}>Create an account</Link></Button>}
             </div>
           </div>
-          <img src={hero} alt="Student learning online with a laptop and robotics kit" width={1536} height={1024} className="rounded-2xl shadow-lift" />
+          <div className="relative">
+            <img src={hero} alt="Student learning online with a laptop and robotics kit" width={1536} height={1024} className="rounded-2xl shadow-lift" />
+            <img src={site.logo.src} alt={site.logo.alt} width={497} height={497} className="absolute -bottom-6 -left-6 size-24 rounded-full shadow-lift ring-4 ring-background sm:size-28" />
+          </div>
         </div>
       </section>
 
