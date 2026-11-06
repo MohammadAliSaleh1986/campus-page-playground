@@ -19,6 +19,9 @@
 - [x] Admin approval of payments and course access.
 - [x] Add and verify admin quiz attempts, scores and pass status by student and course (3 unit tests; signed-in real attempts, search, course filter and mobile table).
 
+# Brand
+- [x] Add the MAS Academy logo (robot with star token) to the header, home page and footer, and set it as the browser tab icon.
+
 # Student dashboard
 - [x] Add parent-friendly progress and quiz history through the child's account.
 - [x] Add downloadable certificates gated by required quiz completion.
