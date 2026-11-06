@@ -1,12 +1,10 @@
 import instructorPhoto from "@/assets/mohammad-ali-saleh-portrait.png.asset.json";
 import logoImage from "@/assets/mas-academy-logo.png.asset.json";
-import markImage from "@/assets/mas-academy-mark.png.asset.json";
 
 export const site = {
   brandName: "MAS Academy",
   logo: {
     src: logoImage.url,
-    mark: markImage.url,
     alt: "MAS Academy logo — a robot holding a star token inside a navy circle, with the words MAS Academy and the tagline From coding robots to mastering markets",
   },
   tagline: "Self-paced courses in coding, robotics, finance, maths & science",
